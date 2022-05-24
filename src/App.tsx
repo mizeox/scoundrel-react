@@ -5,6 +5,7 @@ import Room from './components/Room'
 import Weapon from './components/Weapon'
 import MonstersKilled from './components/MonstersKilled'
 import React from "react"
+import { Game } from "./game/game"
 
 interface IProps {
 }
@@ -19,17 +20,12 @@ interface IState {
 }
 
 class App extends React.Component<IProps, IState> {
+  game: Game;
+
   constructor(props: IProps) {
     super(props);
-
-    this.state = {
-      room: [
-        { id: 1, suit: "Heart" },
-        { id: 2, suit: "Heart" },
-        { id: 3, suit: "Heart" },
-        { id: 4, suit: "Heart" },
-      ]
-    };
+    this.game = new Game();
+    this.state = this.gameToState(this.game);
   }
 
   render() {
@@ -49,16 +45,15 @@ class App extends React.Component<IProps, IState> {
   }
 
   onNewGame() {
-    this.setState((state) => {
-      return {
-        room: [
-          { id: 1, suit: "Spade" },
-          { id: 2, suit: "Spade" },
-          { id: 3, suit: "Spade" },
-          { id: 4, suit: "Spade" },
-        ]
-      }
-    });
+    this.game = new Game();
+    this.setState((state) => this.gameToState(this.game));
+  }
+
+  gameToState(game: Game): IState
+  {
+    return {
+      room: this.game.room.map((card) => { return { id: card.value, suit: card.suit } })
+    }
   }
 }
 
