@@ -1,12 +1,17 @@
+import { ICard } from '../App'
 import Slot from './Slot'
 
-const Room = () => {
+interface IRoomProps {
+  cards: ICard[],
+}
+
+const Room = (props: IRoomProps) => {
   return (
     <div className="room">
-        <Slot id="slot1" />
-        <Slot id="slot2" />
-        <Slot id="slot3" />
-        <Slot id="slot4" />
+        <Slot id="slot1" card={props.cards[0]} />
+        <Slot id="slot2" card={props.cards[1]} />
+        <Slot id="slot3" card={props.cards[2]} />
+        <Slot id="slot4" card={props.cards[3]} />
     </div>
   )
 }
