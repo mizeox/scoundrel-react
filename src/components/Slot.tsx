@@ -1,6 +1,17 @@
-const Slot = ({ id } : { id: string }) => {
+import { Card } from "../game/Card";
+
+interface SlotProps {
+  card: Card | null;
+  takeCard: Function;
+}
+
+const Slot = ({ card, takeCard } : SlotProps) => {
+  if(card===null)
+  {console.log("Card is null")}
+  else{console.log("Card is.... "  + card.name)}
+
   return (
-    <div className="slot" id={id}>{id}</div>
+    <div className="slot" onClick={takeCard(card)}>{card === null ? "null" : card.name}</div>
   )
 }
 

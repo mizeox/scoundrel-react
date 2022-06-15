@@ -1,12 +1,18 @@
 import Slot from './Slot'
+import { Card } from '../game/Card'
 
-const Room = () => {
-  return (
+interface RoomProps {
+  arr: Array<Card | null>;
+  takeCard: React.MouseEventHandler<HTMLDivElement>;
+}
+
+const Room = ({arr, takeCard}: RoomProps) => {
+    return (
     <div className="room">
-        <Slot id="slot1" />
-        <Slot id="slot2" />
-        <Slot id="slot3" />
-        <Slot id="slot4" />
+        <Slot card={arr[0]} takeCard={takeCard}/>
+        <Slot card={arr[1]} takeCard={takeCard}/>
+        <Slot card={arr[2]} takeCard={takeCard}/>
+        <Slot card={arr[3]} takeCard={takeCard}/>
     </div>
   )
 }
