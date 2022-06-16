@@ -2,7 +2,7 @@ import { Card } from "../game/Card";
 
 interface SlotProps {
   card: Card | null;
-  takeCard: Function;
+  takeCard: (card: Card ) => void;
 }
 
 const Slot = ({ card, takeCard } : SlotProps) => {
@@ -11,7 +11,7 @@ const Slot = ({ card, takeCard } : SlotProps) => {
   else{console.log("Card is.... "  + card.name)}
 
   return (
-    <div className="slot" onClick={takeCard(card)}>{card === null ? "null" : card.name}</div>
+    <div className="slot" onClick={() => { if (card) takeCard(card) } }>{card === null ? "null" : card.name}</div>
   )
 }
 

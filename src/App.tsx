@@ -22,6 +22,10 @@ function App() {
 
   const[state, setState] = useState({ deck: _deck, room: _room, discardPile: _discardPile, weapon: _weapon, monstersKilled: _monstersKilled })
 
+  function updateState() {
+    setState({ deck: game.deck, room: game.room, discardPile: game.discardPile, weapon: game.weapon, monstersKilled: game.monstersKilled })
+  }
+
   return (
     <div className="App">
       <h1>Scoundrel</h1>
@@ -29,7 +33,7 @@ function App() {
       <button>Avoid</button>
       <div className="playArea">
         <Deck />
-        <Room arr={state.room} takeCard={card => takeCard}/>
+        <Room arr={state.room} takeCard={ card => takeCard(card) }/>
         <DiscardPile />
         <Weapon />
         <MonstersKilled />        
@@ -41,14 +45,14 @@ function App() {
   {
     game.restart();
     game.fillRoom();
-    setState({deck: game.deck, room: game.room, discardPile: game.discardPile, weapon: game.weapon, monstersKilled: game.monstersKilled})
+    updateState();
   }
 
   function takeCard(card: Card)
   {
     console.log("taking card..." + card.name)
     game.resolveCard(card);
-    // setState({deck: game.deck, room: game.room, discardPile: game.discardPile, weapon: game.weapon, monstersKilled: game.monstersKilled});
+    updateState();
   }
 }
 
