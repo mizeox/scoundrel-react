@@ -1,9 +1,13 @@
-import Card from './Card'
+import { Card }  from '../game/Card'
 
-const Weapon = () => {
+interface WeaponProps{
+  weapon: Card | undefined;
+}
+
+const Weapon = ({weapon}: WeaponProps) => {
+  console.log("Weapon is: " + weapon?.name);
   return (
-    <div className="weapon">weapon
-      <Card rank='5' suit='Diamonds' />
+    <div className="weapon">{weapon === undefined ? "undefined" : weapon.name}
     </div>
   )
 }

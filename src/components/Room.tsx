@@ -3,7 +3,7 @@ import { Card } from '../game/Card'
 
 interface RoomProps {
   arr: Array<Card | null>;
-  takeCard: React.MouseEventHandler<HTMLDivElement>;
+  takeCard: (card: Card | null) => void;
 }
 
 const Room = ({arr, takeCard}: RoomProps) => {
