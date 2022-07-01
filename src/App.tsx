@@ -23,21 +23,13 @@ interface GameState {
 
 function App() {
 
-  let _room = game.room;
-  let _weapon = game.weapon;
-  let _monstersKilled = game.monstersKilled;
-  let _deck = game.deck;
-  let _discardPile = game.discardPile;
-  let _health = game.health;
-
-
   const[state, setState] = useState<GameState>({ 
-    deck: _deck, 
-    room: _room, 
-    discardPile: _discardPile, 
-    weapon: _weapon, 
-    monstersKilled: _monstersKilled, 
-    health: _health,
+    deck: game.deck, 
+    room: game.room,
+    discardPile: game.discardPile, 
+    weapon: game.weapon, 
+    monstersKilled: game.monstersKilled, 
+    health: game.health,
   })
 
   return (
@@ -61,13 +53,6 @@ function App() {
   {
     game.avoidRoom();
     setThatState();
-    // setState({
-    //   room: game.room,
-    //   health: game.health,
-    //   weapon: game.weapon,
-    //   discardPile: game.discardPile,
-    //   monstersKilled: game.monstersKilled,
-    // })
   }
 
   function restart()
@@ -75,7 +60,6 @@ function App() {
     game.restart();
     game.fillRoom();
     setThatState();
-    // setState({deck: game.deck, room: game.room, discardPile: game.discardPile, weapon: game.weapon, monstersKilled: game.monstersKilled})
   }
 
   function setThatState()
@@ -84,7 +68,6 @@ function App() {
       room: game.room,
       health: game.health,
       weapon: game.weapon,
-      // discardPile: game.discardPile,
       monstersKilled: game.monstersKilled,
     })
   }
@@ -93,16 +76,9 @@ function App() {
   {
     if(game.weapon === undefined || game.fightWithWeaponPossible(card) === false)
     {
-      console.log("in the if...");
       game.resolveCard(card, false);
       setThatState();
-      // setState({
-      //   room: game.room,
-      //   health: game.health,
-      //   weapon: game.weapon,
-      //   discardPile: game.discardPile,
-      //   monstersKilled: game.monstersKilled,
-      // })
+      
       return;
     }
     let answer = "";
@@ -125,13 +101,6 @@ function App() {
     }
 
     setThatState();
-    // setState({
-    //   room: game.room,
-    //   health: game.health,
-    //   weapon: game.weapon,
-    //   discardPile: game.discardPile,
-    //   monstersKilled: game.monstersKilled,
-    // })
   }
 
   function takeCard(card: Card)
@@ -147,13 +116,6 @@ function App() {
     game.resolveCard(card);
     if(game.roomCleared() && !game.isGameOver()) {game.fillRoom()}
     setThatState();
-    // setState({ 
-    //   room: game.room,
-    //   health: game.health,
-    //   weapon: game.weapon,
-    //   discardPile: game.discardPile,
-    //   monstersKilled: game.monstersKilled,
-    // });
   }
 }
 
