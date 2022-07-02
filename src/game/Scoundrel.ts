@@ -85,10 +85,11 @@ export class Scoundrel
           this.fightBareHanded(card);
         }
     }
-    if (this.roomCleared())
+    if (this.roomCleared() && !this.isGameOver())
     {
       this._canAvoid = true;
       this._potionUsed = false;
+      this.fillRoom();
     }
   }
 
@@ -147,6 +148,11 @@ export class Scoundrel
       });
       this._monstersKilled = [];
     }
+  }
+
+  isMonsterCard(card: Card): boolean
+  {
+    return card.suit === 'Spades' || card.suit === 'Clubs'
   }
 
   avoidRoom(): void

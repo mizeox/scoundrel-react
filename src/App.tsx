@@ -105,12 +105,9 @@ function App() {
 
   function takeCard(card: Card)
   {
-    console.log("taking the card..." + card.name)
-    
-    if(card.suit === "Spades" || card.suit === "Clubs")
+    if(game.isMonsterCard(card))
     {  
       takeMonsterCard(card);
-      if(game.roomCleared() && !game.isGameOver()) {game.fillRoom()}
       return;
     }
     game.resolveCard(card);
@@ -118,6 +115,5 @@ function App() {
     setThatState();
   }
 }
-
 
 export default App;
