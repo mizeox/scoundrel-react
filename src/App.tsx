@@ -10,7 +10,7 @@ import { Card } from "./game/Card";
 import type { Deck as DrawDeck } from "./game/Deck";
 
 let game = new Scoundrel();
-game.fillRoom();
+game.restart();
 
 interface GameState {
   deck?: DrawDeck;
@@ -58,7 +58,6 @@ function App() {
   function restart()
   {
     game.restart();
-    game.fillRoom();
     setThatState();
   }
 
@@ -111,7 +110,6 @@ function App() {
       return;
     }
     game.resolveCard(card);
-    if(game.roomCleared() && !game.isGameOver()) {game.fillRoom()}
     setThatState();
   }
 }

@@ -180,7 +180,7 @@ export class Scoundrel
     return this._room;
   }
 
-  fillRoom(): void
+  private fillRoom(): void
   {
     for (let i = 0; i < this._room.length; i++)
     {
@@ -276,6 +276,7 @@ export class Scoundrel
     this._potionUsed = false;
     this._monstersKilled = [];
     this._discardPile = [];
+    this.fillRoom();
   }
 }
 
