@@ -8,7 +8,7 @@ interface SlotProps {
 const Slot = ({ card, takeCard } : SlotProps) => {
   
   return (
-    <div className="slot" onClick={() => {if (card) takeCard(card)}}>{card === null ? "null" : card.name}</div>
+    <div className="slot" onClick={() => {if (card) takeCard(card)}}>{card === null ? "" : card.name}</div>
   )
 }
 

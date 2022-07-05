@@ -5,7 +5,6 @@ interface WeaponProps{
 }
 
 const Weapon = ({weapon}: WeaponProps) => {
-  console.log("Weapon is: " + weapon?.name);
   return (
     <div className="weapon">{weapon === undefined ? "undefined" : weapon.name}
     </div>

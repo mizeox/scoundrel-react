@@ -60,8 +60,7 @@ export class Scoundrel
   resolveCard(card: Card, fightWithWeapon = false): void
   {
     if(this.health <=0){return}
-
-    console.log("resolving the card..." + card.name)
+    
     this.takeCard(card);
     this._canAvoid = false;
     const suit: string = card.suit;

@@ -9,6 +9,7 @@ import { Scoundrel } from './game/Scoundrel';
 import { Card } from "./game/Card";
 import type { Deck as DrawDeck } from "./game/Deck";
 
+
 let game = new Scoundrel();
 game.restart();
 
@@ -22,6 +23,8 @@ interface GameState {
 }
 
 function App() {
+
+  const images = importAll(require.context('./img', false, /\.(png|jpe?g|svg)$/));
 
   const[state, setState] = useState<GameState>({ 
     deck: game.deck, 
@@ -40,7 +43,7 @@ function App() {
       <button onClick={() => avoid()} disabled={game.canAvoid === false}>Avoid</button>
       <div>Health: {state.health}</div>
       <div className="playArea">
-        <Deck />
+        <Deck cardback={images['blue_back.png']}/>
         <Room arr={state.room!} takeCard={card => takeCard(card!)}/>
         <DiscardPile />
         <Weapon weapon={state.weapon}/>
@@ -48,6 +51,10 @@ function App() {
       </div>   
     </div>
   );
+
+  function importAll(r) {
+    return r.keys().map(r);
+  } 
   
   function avoid()
   {

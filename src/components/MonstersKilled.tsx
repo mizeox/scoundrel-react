@@ -5,7 +5,6 @@ interface MonsterKilledProps {
 }
 
 const MonstersKilled = ({monsters}: MonsterKilledProps) => {
-  console.log("monster length: " + monsters?.length)
   return (    
     <div className="monsters">{ monsters?.length === 0 ? "Monsters Killed" : monsters?.map((monster) => monster.name) }</div>
   )
